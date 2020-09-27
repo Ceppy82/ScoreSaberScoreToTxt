@@ -12,3 +12,39 @@ Other optional settings:
 * refreshrate: the number of seconds between updates of the txt file (Deafult: 20)
 * filename: the name of the file the script is writing in (Deafult: ranking.txt)
 * country: set the description of your regional score (Deafult: Regional)
+
+# new features
+
+
+global and regional
+
+Files with "distance" are overwritten each time the rank is changed!
+
+
+[tracker.txt]
+
+-rank tracker with timestamp (any noticed change in progress is appended with timestamps)
+
+
+[lastdistance.txt] (disableable)
+
+difference since the last change noticed
+
+
+[hourdistance.txt]  (disableable)
+
+-difference since last 1 hour
+
+
+[daydistance.txt] (disableable)
+
+-difference since last day
+
+
+[weekdistance.txt] (disableable)
+
+-difference since last week
+
+
+[monthdistance.txt] (disableable)
+-difference since last 4 weeks
