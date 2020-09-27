@@ -15,6 +15,7 @@ Other optional settings:
 
 # new features
 
+####### added by Ceppy
 
 ## global and regional
 
@@ -49,3 +50,4 @@ difference since the last change noticed
 ### [monthdistance.txt] (disableable)
 -difference since last 4 weeks
 
+ **Thank You CleeKru for providing ScoreSaberScoreToTxt**
