@@ -125,7 +125,9 @@ while(True):
             f7 = open(config['(optional) Settings']['filename7'], "w")
             f7.write('%+d' %distanceglobal + "\n" + '%+d' %distanceregional)
             f7.close()
-            
+        
+        #End Distance
+        
         oold = onew
 
     time.sleep(int(config['(optional) Settings']['refreshrate']))
