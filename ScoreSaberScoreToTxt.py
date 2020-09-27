@@ -27,23 +27,18 @@ weekbool = config['(progress) bool']['1week']
 weeksbool = config['(progress) bool']['4weeks']
 
 
-
-f = open(config['(optional) Settings']['filename'], "w")
-f2 = open(config['(optional) Settings']['filename2'], "a")
-
-
-
-
-
 while(True):
+   
     currenttime = datetime.now()
     html = urlopen(req).read()
     result = re.search('global">(#[0-9,.]+)</.*png" /> (#[0-9,.]+).*nts:</strong> ([0-9,.]+pp).*ount:</strong> ([0-9.,]+).* Score:</strong> ([0-9,]+)', str(html))
     onew = 'Score Saber Ranking:\nWorldwide: ' + result.group(1) + ' ' + config['(optional) Settings']['country'] + ': ' + result.group(2) + '\nPerformance Points: ' + result.group(3) + ' \nPlay Count: ' + result.group(4) + '\nTotal Score: ' + result.group(5)
-    o2 = "timestamp: " + str(int(time.time())) + " global: " + result.group(1).replace("#", "") + " " + "regional: " + result.group(2).replace("#", "") + " EOL     " + "last change: " + str(time.ctime())
+    o2 = "timestamp: " + str(int(time.time())) + " global: " + result.group(1).replace("#", "") + " " + "regional: " + result.group(2).replace("#", "") + " last change: " + str(time.ctime())
     
     if onew != oold:
 
+        f = open(config['(optional) Settings']['filename'], "w")
+        f2 = open(config['(optional) Settings']['filename2'], "a")
         f.write(onew)
         f.close()
         f2.write(o2 + "\n") 
@@ -54,7 +49,7 @@ while(True):
         with open('tracker.txt') as f8:
             i=0
             for line in f8:
-                temp = re.search('timestamp: (.+?)global: (.+?) regional: (.+?) EOL', line)
+                temp = re.search('timestamp: (.+?)global: (.+?) regional: (.+?) last', line)
                 month = 2419200 #seconds
                 week = 604800 #seconds
                 day = 86400 #seconds
@@ -125,9 +120,7 @@ while(True):
             f7 = open(config['(optional) Settings']['filename7'], "w")
             f7.write('%+d' %distanceglobal + "\n" + '%+d' %distanceregional)
             f7.close()
-        
-        #End Distance
-        
+            
         oold = onew
 
     time.sleep(int(config['(optional) Settings']['refreshrate']))
