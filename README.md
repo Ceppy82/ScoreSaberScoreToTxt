@@ -16,35 +16,35 @@ Other optional settings:
 # new features
 
 
-global and regional
+## global and regional
 
 Files with "distance" are overwritten each time the rank is changed!
 
 
-[tracker.txt]
+### [tracker.txt]
 
 -rank tracker with timestamp (any noticed change in progress is appended with timestamps)
 
 
-[lastdistance.txt] (disableable)
+### [lastdistance.txt] (disableable)
 
 difference since the last change noticed
 
 
-[hourdistance.txt]  (disableable)
+### [hourdistance.txt]  (disableable)
 
 -difference since last 1 hour
 
 
-[daydistance.txt] (disableable)
+### [daydistance.txt] (disableable)
 
 -difference since last day
 
 
-[weekdistance.txt] (disableable)
+### [weekdistance.txt] (disableable)
 
 -difference since last week
 
 
-[monthdistance.txt] (disableable)
+### [monthdistance.txt] (disableable)
 -difference since last 4 weeks
