@@ -18,7 +18,7 @@ Other optional settings:
 
 ## global and regional
 
-Files with "distance" are overwritten each time the rank is changed!
+Files with "distance" are overwritten each time the rank changed!
 
 
 ### [tracker.txt]
