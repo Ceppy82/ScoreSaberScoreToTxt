@@ -4,7 +4,9 @@ import re
 import time
 import configparser
 import sys
-
+import os
+def clear():
+    os.system( 'cls' )
 
 
 
@@ -26,6 +28,13 @@ daybool = config['(progress) bool']['1day']
 weekbool = config['(progress) bool']['1week']
 weeksbool = config['(progress) bool']['4weeks']
 
+rankglobal["last"] = ""
+rankregional["last"] = ""
+
+
+
+
+
 
 while(True):
    
@@ -36,7 +45,6 @@ while(True):
     o2 = "timestamp: " + str(int(time.time())) + " global: " + result.group(1).replace("#", "") + " " + "regional: " + result.group(2).replace("#", "") + " last change: " + str(time.ctime())
     
     if onew != oold:
-
         f = open(config['(optional) Settings']['filename'], "w")
         f2 = open(config['(optional) Settings']['filename2'], "a")
         f.write(onew)
@@ -64,21 +72,23 @@ while(True):
                 if i == 0 and int(temp.group(1)) - int(time.time()) - day <= 0: rankregional["day"] = temp.group(3)
                 if i == 0 and int(temp.group(1)) - int(time.time()) - hour <= 0: rankregional["hour"] = temp.group(3)
 
-
                 i = i + 1
+                
+                
                 if int(temp.group(1)) < int(time.time()) - month: rankglobal["month"] = temp.group(2)
                 if int(temp.group(1)) < int(time.time()) - week: rankglobal["week"] = temp.group(2)
                 if int(temp.group(1)) < int(time.time()) - day: rankglobal["day"] = temp.group(2)
                 if int(temp.group(1)) < int(time.time()) - hour: rankglobal["hour"] = temp.group(2)
+                if rankglobal["last"] != None: rankglobal["before"] = rankglobal["last"]
                 rankglobal["last"] = temp.group(2)
 
                 if int(temp.group(1)) < int(time.time()) - month: rankregional["month"] = temp.group(3)
                 if int(temp.group(1)) < int(time.time()) - week: rankregional["week"] = temp.group(3)
                 if int(temp.group(1)) < int(time.time()) - day: rankregional["day"] = temp.group(3)
                 if int(temp.group(1)) < int(time.time()) - hour: rankregional["hour"] = temp.group(3)
+                if rankregional["last"] != None: rankregional["before"] = rankregional["last"]
                 rankregional["last"] = temp.group(3)
 
-        
         #Begin distance
         rankglobal["now"] = result.group(1).replace("#", "").replace(",", "")
         rankregional["now"] = result.group(2).replace("#", "").replace(",", "")
@@ -114,13 +124,20 @@ while(True):
             f6.close()
             
 
-        distanceglobal = int(rankglobal["last"].replace("#", "").replace(",", "")) - int(rankglobal["now"])
-        distanceregional = int(rankregional["last"].replace("#", "").replace(",", "")) - int(rankregional["now"])
+        distanceglobal = int(rankglobal["before"].replace("#", "").replace(",", "")) - int(rankglobal["now"])
+        distanceregional = int(rankregional["before"].replace("#", "").replace(",", "")) - int(rankregional["now"])
         if lastbool == "true":
             f7 = open(config['(optional) Settings']['filename7'], "w")
             f7.write('%+d' %distanceglobal + "\n" + '%+d' %distanceregional)
             f7.close()
-            
+        
+        clear()
+        print("number of stored data: " + str(i))
+        print("last Data:             ")
+        print("                global " + rankglobal["now"])
+        print("              regional " + rankregional["now"])
+
         oold = onew
 
     time.sleep(int(config['(optional) Settings']['refreshrate']))
+    
