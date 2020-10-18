@@ -15,7 +15,7 @@ Other optional settings:
 
 # new features
 
-####### added by Ceppy
+###### added by Ceppy
 
 ## global and regional
 
